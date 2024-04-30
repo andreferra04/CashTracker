@@ -67,6 +67,7 @@ function addNewIncome(event) {
     event.preventDefault();
 
     const newIncome = {
+        "Data": document.getElementById("entrataDate").value,
         "Nome": document.getElementById("entrataName").value,
         "gruppo": document.getElementById("entrataGroup").value,
         "Tipo": document.getElementById("entrataType").value,
@@ -76,11 +77,13 @@ function addNewIncome(event) {
     list.push(newIncome);
 
     let row = document.createElement("tr");
+    let IncomeDate = document.createElement("td");
     let IncomeName = document.createElement("td");
     let IncomeGroup = document.createElement("td");
     let IncomeType = document.createElement("td");
     let IncomeAmount = document.createElement("td");
 
+    IncomeDate.textContent = document.getElementById("entrataDate").value;
     IncomeName.textContent = document.getElementById("entrataName").value;
     IncomeGroup.textContent = document.getElementById("entrataGroup").value;
     IncomeType.textContent = document.getElementById("entrataType").value;
@@ -95,16 +98,19 @@ function addNewIncome(event) {
 
     list_events.appendChild(row);
 
+    row.appendChild(IncomeDate);
     row.appendChild(IncomeName);
     row.appendChild(IncomeGroup);
     row.appendChild(IncomeType);
     row.appendChild(IncomeAmount);
 
     // Pulisci i campi del form dopo l'aggiunta
-    document.getElementById("IncomeName").value = "";
-    document.getElementById("IncomeGroup").value = "";
-    document.getElementById("IncomeType").value = "";
-    document.getElementById("IncomeAmount").value = "";
+
+    document.getElementById("entrataDate").value = "";
+    document.getElementById("entrataName").value = "";
+    document.getElementById("entrataGroup").value = "";
+    document.getElementById("entrataType").value = "";
+    document.getElementById("entrataAmount").value = "";
 
     // Nascondi il modulo aggiungi
     document.getElementById("blocchiAggiuntivi").style.display = "none";
@@ -115,6 +121,7 @@ function addNewExpense(event) {
     event.preventDefault();
 
     const newExpense = {
+        "Data": document.getElementById("expenseDate").value,
         "Nome": document.getElementById("expenseName").value,
         "gruppo": document.getElementById("expenseGroup").value,
         "Tipo": document.getElementById("expenseType").value,
@@ -128,12 +135,13 @@ function addNewExpense(event) {
     console.log(list);
 
     let row = document.createElement("tr");
+    let expenseDate = document.createElement("td");
     let expenseName = document.createElement("td");
     let expenseGroup = document.createElement("td");
     let expenseType = document.createElement("td");
     let expenseAmount = document.createElement("td");
 
-
+    expenseDate.textContent = document.getElementById("expenseDate").value;
     expenseName.textContent = document.getElementById("expenseName").value;
     expenseGroup.textContent = document.getElementById("expenseGroup").value;
     expenseType.textContent = document.getElementById("expenseType").value;
@@ -150,12 +158,14 @@ function addNewExpense(event) {
 
     list_events.appendChild(row);
 
+    row.appendChild(expenseDate);
     row.appendChild(expenseName);
     row.appendChild(expenseGroup);
     row.appendChild(expenseType);
     row.appendChild(expenseAmount);
 
     // Pulisci i campi del form dopo l'aggiunta
+    document.getElementById("expenseDate").value = "";
     document.getElementById("expenseName").value = "";
     document.getElementById("expenseGroup").value = "";
     document.getElementById("expenseType").value = "";
@@ -176,17 +186,6 @@ document.querySelector(".close").addEventListener("click", function () {
     document.getElementById("modal").style.display = "none";
 });
 
-// Gestisci l'invio del form per aggiungere una nuova uscita
-document.getElementById("addExpenseForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Evita il comportamento predefinito di ricaricare la pagina
-    // Qui gestisci l'aggiunta della nuova uscita utilizzando i valori dal form
-    // Puoi accedere ai valori dei campi del form utilizzando document.getElementById("campoId").value
-    // Dopo aver gestito l'aggiunta, puoi nascondere la finestra modale
-    document.getElementById("modal").style.display = "none";
-});
-
-
-
 
 
 document.querySelector("#blocchiAggiuntivi button:nth-of-type(2)").addEventListener("click", function () {
@@ -198,11 +197,3 @@ document.querySelector("#modalEntrata .close").addEventListener("click", functio
     document.getElementById("modalEntrata").style.display = "none";
 });
 
-// Gestisci l'invio del form per aggiungere una nuova entrata
-document.getElementById("addEntrataForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Evita il comportamento predefinito di ricaricare la pagina
-    // Qui gestisci l'aggiunta della nuova entrata utilizzando i valori dal form
-    // Puoi accedere ai valori dei campi del form utilizzando document.getElementById("campoId").value
-    // Dopo aver gestito l'aggiunta, puoi nascondere la finestra modale
-    document.getElementById("modalEntrata").style.display = "none";
-});

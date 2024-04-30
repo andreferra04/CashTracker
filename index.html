@@ -23,6 +23,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>Data</th>
                     <th>Nome</th>
                     <th>Gruppo</th>
                     <th>Tipo</th>
@@ -46,6 +47,9 @@
                 <span class="close">&times;</span>
                 <form id="addExpenseForm">
 
+                    <label for="birthday">Data:</label>
+                    <input type="date" id="expenseDate" name="expenseDate">
+
                     <label for="expenseName">Nome:</label>
                     <input type="text" id="expenseName" name="expenseName"><br><br>
 
@@ -61,7 +65,7 @@
                     <label for="expenseAmount">Importo:</label>
                     <input type="number" id="expenseAmount" name="expenseAmount" step="0.01"><br><br>
 
-                    <button type="submit">Aggiungi</button>
+                    <button type="submit">Aggiungi Uscita</button>
                 </form>
             </div>
         </div>
@@ -72,7 +76,11 @@
                 <!-- Aggiungi qui il modulo per l'entrata -->
                 <form id="addEntrataForm">
                     <!-- Campi del modulo -->
-                    <label for="entrataName">Nome Entrata:</label>
+
+                    <label for="birthday">Data:</label>
+                    <input type="date" id="entrataDate" name="entrataDate">
+
+                    <label for="entrataName">Nome:</label>
                     <input type="text" id="entrataName" name="entrataName" required><br>
                     <label for="entrataGroup">Gruppo:</label>
                     <select id="entrataGroup" name="entrataGroup" required>
@@ -248,6 +256,7 @@
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
+
         }
 
         .close {
@@ -259,7 +268,6 @@
 
         .close:hover {
             cursor: pointer;
-
             transform: scale(1.1);
             color: red;
             transition: 0.3s ease;
@@ -271,6 +279,32 @@
             text-decoration: none;
             cursor: pointer;
 
+        }
+
+        #addExpenseForm {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #expenseDate {
+            margin-bottom: 2rem;
+        }
+
+        #addEntrataForm {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #entrataDate {
+            margin-bottom: 1rem;
+        }
+
+        @media only screen and (min-width: 992px) {
+            .modal-content {
+
+                width: 20%;
+
+            }
         }
     </style>
 
