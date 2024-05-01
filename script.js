@@ -66,12 +66,21 @@ form2.addEventListener("submit", addNewIncome);
 function addNewIncome(event) {
     event.preventDefault();
 
+    const incomeAmountInput = parseFloat(document.getElementById("entrataAmount").value);
+
+    // Recupera il valore precedente dell'ammontare dalla sessionStorage
+    const savedAmmount = sessionStorage.getItem('ammount');
+    let previousAmount = 0;
+    if (savedAmmount) {
+        previousAmount = JSON.parse(savedAmmount);
+    }
+
     const newIncome = {
         "Data": document.getElementById("entrataDate").value,
         "Nome": document.getElementById("entrataName").value,
         "gruppo": document.getElementById("entrataGroup").value,
         "Tipo": document.getElementById("entrataType").value,
-        "Importo": parseFloat(document.getElementById("entrataAmount").value)
+        "Importo": incomeAmountInput
     };
     list.push(newIncome);
 
@@ -91,8 +100,10 @@ function addNewIncome(event) {
 
 
 
-    ammonts = ammonts + parseFloat(IncomeAmount.textContent);
+    ammonts = previousAmount + incomeAmountInput
     ammount_value.textContent = ammonts.toFixed(2) + " €"
+
+    sessionStorage.setItem('ammount', JSON.stringify(ammonts));
 
 
     list_events.appendChild(row);
@@ -121,12 +132,21 @@ function addNewExpense(event) {
     console.log(event)
     event.preventDefault();
 
+    const expenseAmountInput = parseFloat(document.getElementById("expenseAmount").value);
+
+    // Recupera il valore precedente dell'ammontare dalla sessionStorage
+    const savedAmmount = sessionStorage.getItem('ammount');
+    let previousAmount = 0;
+    if (savedAmmount) {
+        previousAmount = JSON.parse(savedAmmount);
+    }
+
     const newExpense = {
         "Data": document.getElementById("expenseDate").value,
         "Nome": document.getElementById("expenseName").value,
         "gruppo": document.getElementById("expenseGroup").value,
         "Tipo": document.getElementById("expenseType").value,
-        "Importo": parseFloat(document.getElementById("expenseAmount").value)
+        "Importo": expenseAmountInput
     };
 
     // Aggiunta dell'oggetto alla lista
@@ -150,8 +170,10 @@ function addNewExpense(event) {
 
 
 
-    ammonts = ammonts - expenseAmount.textContent;
+    ammonts = previousAmount - expenseAmountInput;
     ammount_value.textContent = ammonts.toFixed(2) + " €"
+
+    sessionStorage.setItem('ammount', JSON.stringify(ammonts));
 
 
     list_events.appendChild(row);
@@ -202,10 +224,16 @@ window.addEventListener('load', function () {
     // Recupera i dati dalla sessionStorage
     const savedExpenses = sessionStorage.getItem('expenses');
 
+    const savedAmmount = sessionStorage.getItem('ammount');
+
     if (savedExpenses) {
         // Se ci sono dati salvati, li carichi nella tabella
         list = JSON.parse(savedExpenses);
         renderTable(); // Funzione per visualizzare i dati nella tabella
+    }
+    if (savedAmmount) {
+        let amount = JSON.parse(savedAmmount);
+        document.getElementById("ammount").textContent = amount.toFixed(2) + " €";
     }
 });
 
@@ -214,7 +242,7 @@ function renderTable() {
     // Pulisci la tabella
     list_events.innerHTML = '';
 
-    
+
 
     // Itera sui dati salvati e aggiungi righe alla tabella
     list.forEach(function (item) {
@@ -226,7 +254,7 @@ function renderTable() {
             cell.textContent = item[key];
             row.appendChild(cell);
         }
-        
+
         list_events.appendChild(row);
     });
 }
