@@ -66,6 +66,7 @@ form2.addEventListener("submit", addNewIncome);
 function addNewIncome(event) {
     event.preventDefault();
 
+    document.getElementById("modalEntrata").style.display = "none";
     const incomeAmountInput = parseFloat(document.getElementById("entrataAmount").value);
 
     // Recupera il valore precedente dell'ammontare dalla sessionStorage
@@ -131,6 +132,7 @@ function addNewIncome(event) {
 function addNewExpense(event) {
     console.log(event)
     event.preventDefault();
+    document.getElementById("modal").style.display = "none";
 
     const expenseAmountInput = parseFloat(document.getElementById("expenseAmount").value);
 
