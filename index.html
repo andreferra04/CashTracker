@@ -36,7 +36,6 @@
         <div id="blocchiAggiuntivi" style="display: none;">
             <button>Add uscita</button>
             <button>Add entrata</button>
-            <button>Add gruppo</button>
         </div>
         <button id="aggiungiButton"><i class="fa fa-plus" aria-hidden="true"></i></button>
 
@@ -48,22 +47,22 @@
                 <form id="addExpenseForm">
 
                     <label for="birthday">Data:</label>
-                    <input type="date" id="expenseDate" name="expenseDate">
+                    <input type="date" id="expenseDate" name="expenseDate" required>
 
                     <label for="expenseName">Nome:</label>
-                    <input type="text" id="expenseName" name="expenseName"><br><br>
+                    <input type="text" id="expenseName" name="expenseName" required><br><br>
 
                     <label for="expenseGroup">Gruppo:</label>
-                    <select id="expenseGroup" name="expenseGroup">
+                    <select id="expenseGroup" name="expenseGroup" required>
                     </select><br><br>
 
                     <label for="expenseType">Tipo:</label>
-                    <select id="expenseType" name="expenseType">
+                    <select id="expenseType" name="expenseType" required>
                     </select>
                     <br><br>
 
                     <label for="expenseAmount">Importo:</label>
-                    <input type="number" id="expenseAmount" name="expenseAmount" step="0.01"><br><br>
+                    <input type="number" id="expenseAmount" name="expenseAmount" step="0.01" required><br><br>
 
                     <button type="submit">Aggiungi Uscita</button>
                 </form>
@@ -78,7 +77,7 @@
                     <!-- Campi del modulo -->
 
                     <label for="birthday">Data:</label>
-                    <input type="date" id="entrataDate" name="entrataDate">
+                    <input type="date" id="entrataDate" name="entrataDate" required>
 
                     <label for="entrataName">Nome:</label>
                     <input type="text" id="entrataName" name="entrataName" required><br>
@@ -312,8 +311,8 @@
     <!-- 
     DA fare:
     
-    -quando inserisci gli input la finestra modale deve sparire
-    -aggiungere gruppo
+    
+
     -fare parte in cui puoi modifcare la riga
     -fare la parte in cui puoi eliminare una riga
     -il menù in fondoè senza transition
