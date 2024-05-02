@@ -91,6 +91,17 @@ function addNewIncome(event) {
     let IncomeGroup = document.createElement("td");
     let IncomeType = document.createElement("td");
     let IncomeAmount = document.createElement("td");
+    let actions = document.createElement("td");
+
+    let edit_row = document.createElement("i");
+    edit_row.classList.add("fa", "fa-edit")
+
+    let delete_row = document.createElement("i");
+
+    delete_row.classList.add("fa", "fa-trash")
+
+
+
 
     IncomeDate.textContent = document.getElementById("entrataDate").value;
     IncomeName.textContent = document.getElementById("entrataName").value;
@@ -106,6 +117,12 @@ function addNewIncome(event) {
 
     sessionStorage.setItem('ammount', JSON.stringify(ammonts));
 
+    actions.appendChild(edit_row)
+    actions.appendChild(delete_row)
+
+
+    actions.classList.add("action-column");
+
 
     list_events.appendChild(row);
 
@@ -114,6 +131,7 @@ function addNewIncome(event) {
     row.appendChild(IncomeGroup);
     row.appendChild(IncomeType);
     row.appendChild(IncomeAmount);
+    row.appendChild(actions);
 
     sessionStorage.setItem('expenses', JSON.stringify(list));
 
@@ -256,7 +274,26 @@ function renderTable() {
             cell.textContent = item[key];
             row.appendChild(cell);
         }
+        let actionsCell = document.createElement("td");
+        if (!row.querySelector(".action-column")) {
+            let actions = document.createElement("div");
+            actions.classList.add("action-column");
+            
+            let editIcon = document.createElement("i");
+            editIcon.classList.add("fa", "fa-edit");
+            
+            let deleteIcon = document.createElement("i");
+            deleteIcon.classList.add("fa", "fa-trash");
 
+            actions.appendChild(editIcon);
+            actions.appendChild(deleteIcon);
+            
+            actionsCell.appendChild(actions);
+        }
+
+        row.appendChild(actionsCell);
         list_events.appendChild(row);
+
+        
     });
 }

@@ -28,6 +28,7 @@
                     <th>Gruppo</th>
                     <th>Tipo</th>
                     <th>Importo</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody id="list-events"></tbody>
@@ -130,6 +131,7 @@
             flex-direction: column;
             position: relative;
             height: 70vh;
+            width: 100%;
         }
 
         img {
@@ -156,16 +158,17 @@
         }
 
         #blocchiAggiuntivi {
-            position: absolute;
-            right: 2rem;
-            bottom: 60px;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 999;
 
         }
 
         #blocchiAggiuntivi button {
             display: block;
             width: 100%;
-            margin-bottom: 5px;
+            margin-bottom: 2px;
             cursor: pointer;
             background-color: #89b86b;
             color: #002115be;
@@ -191,17 +194,22 @@
             color: #00301e;
             border-color: #00301e;
             border-style: solid;
-            position: absolute;
-            bottom: 0;
-            right: 2rem;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+            /* Assicura che il bottone sia sopra gli altri elementi */
 
 
         }
+
+
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
+            overflow-x: auto;
         }
 
         thead {
@@ -209,13 +217,24 @@
             color: #00301e;
         }
 
-        thead th {
+        /* thead th {
             padding: 10px;
             text-align: left;
         }
 
         tbody td {
             padding: 10px;
+        } */
+        table td,
+        table th {
+            padding: 8px;
+            border: 1px solid #ddd;
+            word-wrap: break-word;
+
+        }
+
+        table th {
+            text-align: left;
         }
 
         button {
@@ -298,11 +317,41 @@
             margin-bottom: 1rem;
         }
 
+        .action-column {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            max-height: 100%;
+            justify-content: space-between;
+
+        }
+
+        table td.action-column {
+            height: 5vh;
+           
+        }
+
         @media only screen and (min-width: 992px) {
             .modal-content {
 
                 width: 20%;
 
+            }
+            .action-column{
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+        }
+
+
+        @media only screen and (max-width: 600px) {
+
+            /* Personalizza lo stile per dispositivi mobili */
+            table td,
+            table th {
+                /* Assicurati che le celle non siano più larghe della finestra */
+                max-width: none;
             }
         }
     </style>
@@ -312,9 +361,10 @@
     DA fare:
     
     
-
+    -stile i
     -fare parte in cui puoi modifcare la riga
     -fare la parte in cui puoi eliminare una riga
+    -sistemare table per mobile
     -il menù in fondoè senza transition
     -->
 
